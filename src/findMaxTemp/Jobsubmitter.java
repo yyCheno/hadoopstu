@@ -22,7 +22,7 @@ public class Jobsubmitter {
 			Configuration conf = new Configuration();//实例化，从Hadoop的配置文件里读取参数
 			conf.set("mapreduce.app-submission.cross-platform", "true");
 			 @SuppressWarnings("deprecation")
-			Job job = new Job(conf, "1j-wordcount");//job_name = "wordcount"    
+			Job job = new Job(conf, "1j-FindMaxTemp");//job_name = "wordcount"    
 			 job.setJarByClass(Jobsubmitter.class);//输入    
 
 		        ((JobConf) job.getConfiguration()).setJar(jarFile.toString());
@@ -31,8 +31,8 @@ public class Jobsubmitter {
 			 job.setReducerClass(FindMaxTempReducer.class);   //输入
 			 job.setOutputKeyClass(Text.class);    //输出
 			 job.setOutputValueClass(IntWritable.class); //输出   
-			 FileInputFormat.addInputPath(job, new Path("hdfs://master:9000/1j/input-03/a-03.txt"));//输入文件，端口默认9000，具体看集群配置    
-			 FileOutputFormat.setOutputPath(job, new Path("hdfs://master:9000/1j/output-0604"));//输出文件    
+			 FileInputFormat.addInputPath(job, new Path("hdfs://master:9000/gsod/1929/030050-99999-1929.op"));//输入文件，端口默认9000，具体看集群配置
+			 FileOutputFormat.setOutputPath(job, new Path("hdfs://master:9000/1j/output-FindMaxTemp-11"));//输出文件    
 			 System.exit(job.waitForCompletion(true) ? 0 : 1);//若执行完毕，退出
 	}
 

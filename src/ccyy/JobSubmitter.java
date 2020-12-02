@@ -38,7 +38,7 @@ public class JobSubmitter {
 		 job.setOutputKeyClass(Text.class);    //输出
 		 job.setOutputValueClass(IntWritable.class); //输出   
 		 FileInputFormat.addInputPath(job, new Path("hdfs://master:9000/1j/input-03/a-03.txt"));//输入文件，端口默认9000，具体看集群配置    
-		 FileOutputFormat.setOutputPath(job, new Path("hdfs://master:9000/1j/output-0604"));//输出文件    
+		 FileOutputFormat.setOutputPath(job, new Path("hdfs://master:9000/1j/output-012"));//输出文件    
 		 System.exit(job.waitForCompletion(true) ? 0 : 1);//若执行完毕，退出
 	}
     public static File createTempJar(String root) throws IOException {
