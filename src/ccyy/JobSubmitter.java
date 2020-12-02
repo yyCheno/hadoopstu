@@ -1,6 +1,5 @@
 package ccyy;
 
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -25,21 +24,21 @@ public class JobSubmitter {
 	public static void main(String[] args) throws Exception{
 
         File jarFile = createTempJar("bin");
-		Configuration conf = new Configuration();//ÊµÀý»¯£¬´ÓHadoopµÄÅäÖÃÎÄ¼þÀï¶ÁÈ¡²ÎÊý
+		Configuration conf = new Configuration();//Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Hadoopï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½
 		conf.set("mapreduce.app-submission.cross-platform", "true");
 		 @SuppressWarnings("deprecation")
 		Job job = new Job(conf, "1j-wordcount");//job_name = "wordcount"    
-		 job.setJarByClass(JobSubmitter.class);//ÊäÈë    
+		 job.setJarByClass(JobSubmitter.class);//ï¿½ï¿½ï¿½ï¿½    
 
 	        ((JobConf) job.getConfiguration()).setJar(jarFile.toString());
 
-		 job.setMapperClass(WordCountMapper.class);  //ÊäÈë  
-		 job.setReducerClass(WordCountReducer.class);   //ÊäÈë
-		 job.setOutputKeyClass(Text.class);    //Êä³ö
-		 job.setOutputValueClass(IntWritable.class); //Êä³ö   
-		 FileInputFormat.addInputPath(job, new Path("hdfs://master:9000/1j/input-03/a-03.txt"));//ÊäÈëÎÄ¼þ£¬¶Ë¿ÚÄ¬ÈÏ9000£¬¾ßÌå¿´¼¯ÈºÅäÖÃ    
-		 FileOutputFormat.setOutputPath(job, new Path("hdfs://master:9000/1j/output-012"));//Êä³öÎÄ¼þ    
-		 System.exit(job.waitForCompletion(true) ? 0 : 1);//ÈôÖ´ÐÐÍê±Ï£¬ÍË³ö
+		 job.setMapperClass(WordCountMapper.class);  //ï¿½ï¿½ï¿½ï¿½  
+		 job.setReducerClass(WordCountReducer.class);   //ï¿½ï¿½ï¿½ï¿½
+		 job.setOutputKeyClass(Text.class);    //ï¿½ï¿½ï¿½
+		 job.setOutputValueClass(IntWritable.class); //ï¿½ï¿½ï¿½   
+		 FileInputFormat.addInputPath(job, new Path("hdfs://master:9000/1j/input-03/a-03.txt"));//ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½Ë¿ï¿½Ä¬ï¿½ï¿½9000ï¿½ï¿½ï¿½ï¿½ï¿½å¿´ï¿½ï¿½Èºï¿½ï¿½ï¿½ï¿½    
+		 FileOutputFormat.setOutputPath(job, new Path("hdfs://master:9000/1j/output-012"));//ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½    
+		 System.exit(job.waitForCompletion(true) ? 0 : 1);//ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ï¿½Ï£ï¿½ï¿½Ë³ï¿½
 	}
     public static File createTempJar(String root) throws IOException {
         if (!new File(root).exists()) {
